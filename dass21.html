@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm DASS-21 | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <link rel="stylesheet" href="../css/tests.css?v=2030">
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="../tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="../tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="test-page">
+    <div class="test-container">
+
+      <!-- STEP 1: INTRO -->
+      <section id="stepIntro" class="test-step active">
+        <div class="intro-card">
+          <span class="test-badge">DASS-21 SCREENING</span>
+          <h1 class="intro-title gradient-text" data-vi="Trắc Nghiệm Stress, Lo Âu & Trầm Cảm" data-en="Depression, Anxiety and Stress Scale">Trắc Nghiệm Stress, Lo Âu & Trầm Cảm</h1>
+          <p class="intro-desc" data-vi="DASS-21 là báo cáo gồm 21 câu giúp đo lường đồng thời 3 trạng thái cảm xúc: Trầm cảm, Lo âu và Căng thẳng (Stress). Dành ra 10 phút để hiểu rõ sức khoẻ tinh thần của bạn." data-en="DASS-21 is a 21-item questionnaire designed to measure the severity of the core symptoms of depression, anxiety, and stress. Take 10 minutes to understand your mental health.">
+            DASS-21 là báo cáo gồm 21 câu giúp đo lường đồng thời 3 trạng thái cảm xúc: Trầm cảm, Lo âu và Căng thẳng (Stress). Dành ra 10 phút để hiểu rõ sức khoẻ tinh thần của bạn.
+          </p>
+
+          <div class="guidelines-list">
+            <div class="guide-item">
+              <span class="guide-icon">🌿</span>
+              <div class="guide-text">
+                <h4 data-vi="Không Thể Sai Hoặc Đúng" data-en="No Right or Wrong Answers">Không Thể Sai Hoặc Đúng</h4>
+                <p data-vi="Đừng dừng lại quá lâu ở bất kỳ câu nào. Phản ứng đầu tiên của bạn thường chính xác nhất." data-en="Do not spend too much time on any statement. Your immediate reaction is usually more accurate."></p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">⏳</span>
+              <div class="guide-text">
+                <h4 data-vi="Thời Gian" data-en="TimeFrame">Thời Gian</h4>
+                <p data-vi="Hãy đọc mỗi câu và chọn mức độ phù hợp với bạn trong vòng 1 TUẦN QUA." data-en="Read each statement and indicate how much it applied to you over the PAST WEEK."></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="agreement-box">
+            <label class="form-checkbox">
+              <input type="checkbox" id="agreeCheckbox">
+              <span class="form-checkbox-label" data-vi="Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia." data-en="I understand this is a screening tool, not a medical diagnosis. I voluntarily agree to participate.">
+                Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia.
+              </span>
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-primary" id="startTestBtn"><span data-vi="Bắt Đầu Làm Test" data-en="Start Assessment">Bắt Đầu Làm Test</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: TEST -->
+      <section id="stepTest" class="test-step">
+        <div class="test-header">
+          <div class="progress-info">
+            <span class="question-count" id="qCountTxt">Câu 1/21</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+          </div>
+          <div class="encouragement-msg" id="encourageMsg"></div>
+        </div>
+
+        <div id="questionContainer"></div>
+
+        <div class="test-actions">
+          <button class="btn-secondary" id="prevBtn" style="visibility:hidden">Quay Lại</button>
+          <button class="btn-primary" id="nextBtn">Tiếp Theo</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: RESULT FORM -->
+      <section id="stepResult" class="test-step">
+        <div class="result-card">
+          <span class="completion-icon">🎉</span>
+          <h2 class="result-title gradient-text" data-vi="Bạn Đã Hoàn Thành!" data-en="You Did It!">Bạn Đã Hoàn Thành!</h2>
+          <p class="result-desc" data-vi="Cảm ơn bạn đã kiên nhẫn. Sự thấu hiểu bản thân là bước đầu tiên để chữa lành. Vui lòng để lại thông tin để xem kết quả qua email:" data-en="Thank you for your patience. Self-understanding is the first step to healing. Leave your info to view results:">
+            Cảm ơn bạn đã kiên nhẫn. Sự thấu hiểu bản thân là bước đầu tiên để chữa lành. Vui lòng để lại thông tin để xem kết quả qua email:
+          </p>
+
+          <form id="leadForm" class="lead-form">
+            <div class="form-header"><h3>Nhận Kết Quả Qua Email</h3></div>
+            <div class="form-group">
+              <label class="form-label">Họ và Tên</label>
+              <input type="text" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số Điện Thoại (Tùy chọn)</label>
+              <input type="tel" name="phone" class="form-input">
+            </div>
+            <button type="submit" class="btn-primary submit-btn" id="submitResultsBtn">Xem Phân Tích</button>
+          </form>
+
+          <div id="quickResultContent"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script src="../js/api.js?v=2030"></script>
+  <script src="../js/tests.js?v=2030"></script>
+  <script>
+    const dass21Questions = [
+      { vi: "Tôi thấy khó xả stress", en: "I found it hard to wind down"}, // 1 (S)
+      { vi: "Tôi bị khô miệng", en: "I was aware of dryness of my mouth"}, // 2 (A)
+      { vi: "Tôi không có chút cảm xúc tích cực nào", en: "I couldn't seem to experience any positive feeling at all"}, // 3 (D)
+      { vi: "Tôi khó thở (ví dụ thở gấp, thở hổn hển không vì lao động thể lực)", en: "I experienced breathing difficulty (e.g. excessively rapid breathing, breathlessness in the absence of physical exertion)"}, // 4 (A)
+      { vi: "Tôi thấy khó bắt tay vào làm việc gì", en: "I found it difficult to work up the initiative to do things"}, // 5 (D)
+      { vi: "Tôi có xu hướng phản ứng thái quá với các tình huống", en: "I tended to over-react to situations"}, // 6 (S)
+      { vi: "Tôi bị run (ví dụ như run tay)", en: "I experienced trembling (e.g. in the hands)"}, // 7 (A)
+      { vi: "Tôi cảm thấy mình dùng quá nhiều năng lượng thần kinh", en: "I felt that I was using a lot of nervous energy"}, // 8 (S)
+      { vi: "Tôi sợ những tình huống khiến mình hoảng loạn hoặc làm trò cười", en: "I was worried about situations in which I might panic and make a fool of myself"}, // 9 (A)
+      { vi: "Tôi thấy mình không có gì mong đợi ở tương lai", en: "I felt that I had nothing to look forward to"}, // 10 (D)
+      { vi: "Tôi thấy bản thân dễ bị kích động", en: "I found myself getting agitated"}, // 11 (S)
+      { vi: "Tôi thấy khó thư giãn", en: "I found it difficult to relax"}, // 12 (S)
+      { vi: "Tôi thấy chán nản và buồn bã", en: "I felt down-hearted and blue"}, // 13 (D)
+      { vi: "Tôi không chịu nổi sự cản trở nào khi đang làm việc", en: "I was intolerant of anything that kept me from getting on with what I was doing"}, // 14 (S)
+      { vi: "Tôi cảm thấy gần như hoảng loạn", en: "I felt I was close to panic"}, // 15 (A)
+      { vi: "Tôi không thấy nhiệt tình với việc gì", en: "I was unable to become enthusiastic about anything"}, // 16 (D)
+      { vi: "Tôi thấy bản thân không có giá trị", en: "I felt I wasn't worth much as a person"}, // 17 (D)
+      { vi: "Tôi cảm thấy mình khá dễ chạm tự ái (nhạy cảm)", en: "I felt that I was rather touchy"}, // 18 (S)
+      { vi: "Tôi nhận thức nhịp tim đập rõ ràng (nhịp tăng hoặc bỏ nhịp không vì gắng sức)", en: "I was aware of the action of my heart in the absence of physical exertion"}, // 19 (A)
+      { vi: "Tôi sợ vô cớ", en: "I felt scared without any good reason"}, // 20 (A)
+      { vi: "Tôi thấy cuộc sống vô nghĩa", en: "I felt that life was meaningless"} // 21 (D)
+    ];
+
+    const options = [
+      { value: 0, vi: "Không đúng với tôi chút nào", en: "Did not apply to me at all" },
+      { value: 1, vi: "Đúng với tôi một phần/ thỉnh thoảng", en: "Applied to me to some degree, or some of the time" },
+      { value: 2, vi: "Đúng với tôi phần lớn/ nhiều lúc", en: "Applied to me to a considerable degree or a good part of time" },
+      { value: 3, vi: "Rất đúng với tôi/ hầu hết thời gian", en: "Applied to me very much or most of the time" }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new TestEngine({
+        testId: 'DASS21',
+        questions: dass21Questions,
+        options: options,
+        scoringHandler: (answers) => {
+          // 0-indexed mapped to 1-indexed questions
+          // D: 3, 5, 10, 13, 16, 17, 21 => index: 2, 4, 9, 12, 15, 16, 20
+          // A: 2, 4, 7, 9, 15, 19, 20 => index: 1, 3, 6, 8, 14, 18, 19
+          // S: 1, 6, 8, 11, 12, 14, 18 => index: 0, 5, 7, 10, 11, 13, 17
+          
+          let d_score = (answers[2] + answers[4] + answers[9] + answers[12] + answers[15] + answers[16] + answers[20]) * 2;
+          let a_score = (answers[1] + answers[3] + answers[6] + answers[8] + answers[14] + answers[18] + answers[19]) * 2;
+          let s_score = (answers[0] + answers[5] + answers[7] + answers[10] + answers[11] + answers[13] + answers[17]) * 2;
+          
+          const evaluate = (score, bounds) => {
+            if(score <= bounds[0]) return { vi: 'Bình thường', en: 'Normal', css: 'minimal' };
+            if(score <= bounds[1]) return { vi: 'Nhẹ', en: 'Mild', css: 'mild' };
+            if(score <= bounds[2]) return { vi: 'Vừa', en: 'Moderate', css: 'moderate' };
+            if(score <= bounds[3]) return { vi: 'Nặng', en: 'Severe', css: 'severe' };
+            return { vi: 'Rất Nặng', en: 'Extremely Severe', css: 'severe' };
+          };
+
+          const resD = evaluate(d_score, [9, 13, 20, 27]);
+          const resA = evaluate(a_score, [7, 9, 14, 19]);
+          const resS = evaluate(s_score, [14, 18, 25, 33]);
+
+          let d_text_vi = `Trầm cảm: ${d_score} điểm (${resD.vi}).`;
+          let a_text_vi = `Lo âu: ${a_score} điểm (${resA.vi}).`;
+          let s_text_vi = `Stress: ${s_score} điểm (${resS.vi}).`;
+
+          let d_text_en = `Depression: ${d_score} points (${resD.en}).`;
+          let a_text_en = `Anxiety: ${a_score} points (${resA.en}).`;
+          let s_text_en = `Stress: ${s_score} points (${resS.en}).`;
+          
+          return {
+            total: `D:${d_score}/A:${a_score}/S:${s_score}`, // special formatting for DASS
+            d_score, a_score, s_score,
+            d_severity_vi: resD.vi, a_severity_vi: resA.vi, s_severity_vi: resS.vi,
+            d_severity_en: resD.en, a_severity_en: resA.en, s_severity_en: resS.en,
+            severity_vi: "Xem chi tiết bên dưới",
+            severity_en: "See details below",
+            desc_vi: `<br><b>${d_text_vi}</b><br><b>${a_text_vi}</b><br><b>${s_text_vi}</b><br><br>Hãy kiểm tra email để chúng tôi gởi phân tích cụ thể từng phần cho bạn.`,
+            desc_en: `<br><b>${d_text_en}</b><br><b>${a_text_en}</b><br><b>${s_text_en}</b><br><br>Please check your email for a detailed breakdown of each dimension.`,
+            cssClass: (resD.css === 'severe' || resA.css === 'severe' || resS.css === 'severe') ? 'severe' : 'moderate'
+          };
+        },
+        crisisHandler: null
+      });
+    });
+  </script>
+</body>
+</html>

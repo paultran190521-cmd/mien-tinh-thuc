@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <style>
+    body { background: var(--bg-deep); }
+    .admin-page {
+      padding-top: calc(var(--nav-h) + 2rem);
+      padding-bottom: 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    /* Login */
+    .admin-login {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      margin-top: 4rem;
+      display: block; /* Toggled via JS */
+    }
+    .admin-login.hidden { display: none; }
+    
+    /* Dashboard */
+    .admin-dashboard {
+      max-width: 1100px;
+      width: 100%;
+      display: none; /* Toggled via JS */
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .admin-dashboard.visible { display: flex; }
+
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .stat-val { font-size: 2.5rem; font-weight: 900; line-height: 1; color: var(--primary-light); }
+    .stat-label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .data-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow-x: auto;
+    }
+    .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .data-table th, .data-table td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .data-table th { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; background: rgba(0,0,0,0.1); }
+    .data-table td { font-size: 0.95rem; color: var(--text-primary); }
+    .data-table tr:last-child td { border-bottom: none; }
+    
+    .badge { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; }
+    .badge-severe { background: rgba(239,68,68,0.2); color: #ef4444; }
+    .badge-moderate { background: rgba(245,158,11,0.2); color: #f59e0b; }
+    .badge-mild { background: rgba(34,197,94,0.2); color: #22c55e; }
+
+    .admin-logout { font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tests/phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="../tests/gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="../tests/dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="../tests/ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="../tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="../tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="admin-page">
+    
+    <!-- LOGIN -->
+    <div class="admin-login" id="adminLogin">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">🔐</div>
+      <h2 style="margin-bottom: 0.5rem; color: var(--text-primary);">Khu Vực Quản Trị</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Vui lòng nhập mật khẩu admin (Mặc định: sunnycare2024)</p>
+      
+      <div class="form-group">
+        <input type="password" id="adminPwd" class="form-input" placeholder="Mật khẩu..." style="text-align: center;">
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="checkAdminLogin()">Đăng Nhập</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="admin-dashboard" id="adminDash">
+      <div class="dash-header">
+        <div>
+          <h1 class="gradient-text" style="font-size: 2rem; margin-bottom: 0.2rem;">Tổng Quan Đánh Giá</h1>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Cập nhật từ Google Sheets backend</p>
+        </div>
+        <button class="admin-logout" onclick="adminLogout()">Đăng xuất</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-val" id="statTotal">--</span>
+          <span class="stat-label">Tổng lượt trắc nghiệm</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val" id="statRisk" style="color: var(--danger)">--</span>
+          <span class="stat-label">Trường hợp rủi ro cao (Severe)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val" id="statUsers">--</span>
+          <span class="stat-label">Người dùng Nhật Ký</span>
+        </div>
+      </div>
+
+      <div>
+         <h3 style="margin-bottom: 1rem; color: var(--text-primary)">Lượt thực hiện gần đây (Mô phỏng)</h3>
+         <div class="data-table-wrap">
+           <table class="data-table">
+             <thead>
+               <tr>
+                 <th>Thời gian</th>
+                 <th>Tên</th>
+                 <th>Loại bài Test</th>
+                 <th>Điểm</th>
+                 <th>Mức độ</th>
+                 <th>Email đã gửi</th>
+               </tr>
+             </thead>
+             <tbody id="dashTableBody">
+               <tr>
+                 <td colspan="6" style="text-align:center; padding: 2rem; color:var(--text-muted)">
+                   Đang tải dữ liệu từ Google App Script...
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../js/app.js?v=2030"></script>
+  <script src="../js/api.js?v=2030"></script>
+  <script>
+    const PWD = 'sunnycare2024';
+
+    function checkAdminLogin() {
+      const val = document.getElementById('adminPwd').value;
+      if (val === PWD) {
+        sessionStorage.setItem('sc_admin_auth', '1');
+        showDashboard();
+      } else {
+        window.SC?.showToast('Sai mật khẩu', 'error');
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('sc_admin_auth');
+      document.getElementById('adminPwd').value = '';
+      document.getElementById('adminLogin').classList.remove('hidden');
+      document.getElementById('adminDash').classList.remove('visible');
+    }
+
+    function showDashboard() {
+      document.getElementById('adminLogin').classList.add('hidden');
+      document.getElementById('adminDash').classList.add('visible');
+      loadMockData(); // Ideally call API.getAdminStats() here
+    }
+
+    function loadMockData() {
+      // In a full GAS implementation, API.getAdminStats() would return this data.
+      setTimeout(() => {
+        document.getElementById('statTotal').textContent = '142';
+        document.getElementById('statRisk').textContent = '12';
+        document.getElementById('statUsers').textContent = '45';
+
+        const tbody = document.getElementById('dashTableBody');
+        tbody.innerHTML = `
+          <tr>
+            <td>Hôm nay, 09:12</td>
+            <td>Nguyễn Văn A</td>
+            <td>PHQ-9 (Trầm Cảm)</td>
+            <td>18</td>
+            <td><span class="badge badge-severe">Nặng</span></td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Hôm qua, 15:40</td>
+            <td>Lê Thị B</td>
+            <td>GAD-7 (Lo Âu)</td>
+            <td>6</td>
+            <td><span class="badge badge-mild">Nhẹ</span></td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Hôm qua, 11:20</td>
+            <td>Trần C</td>
+            <td>DASS-21</td>
+            <td>D:4/A:12/S:8</td>
+            <td><span class="badge badge-moderate">Vừa</span></td>
+            <td>✅</td>
+          </tr>
+        `;
+      }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('sc_admin_auth')) {
+        showDashboard();
+      }
+    });
+
+    // Enter key
+    document.getElementById('adminPwd').addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') checkAdminLogin();
+    });
+  </script>
+</body>
+</html>

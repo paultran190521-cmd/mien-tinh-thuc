@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SUNNYCARE – Khám phá sức khỏe tâm lý với các công cụ trắc nghiệm chuẩn lâm sàng, nhật ký cảm xúc và bài tập điều tiết cảm xúc. An toàn, bảo mật, nhân văn.">
+  <meta name="keywords" content="tâm lý, trắc nghiệm tâm lý, PHQ-9, GAD-7, DASS-21, sức khỏe tâm thần, SunnyCare">
+  <meta name="theme-color" content="#1992b0">
+  <meta property="og:title" content="SUNNYCARE">
+  <meta property="og:description" content="Không gian an toàn để khám phá và chăm sóc sức khỏe tâm lý của bạn">
+  <meta property="og:type" content="website">
+  <title>SUNNYCARE — Hành Trình Chữa Lành Bắt Đầu Từ Đây</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css?v=2030">
+
+  <style>
+    /* ── Page-specific overrides ── */
+    .hero-title span { display: block; }
+    .hero-title .gradient-text {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: fadeInUp 1.2s ease 1s both;
+      z-index: 1;
+    }
+    .scroll-mouse {
+      width: 24px; height: 36px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 6px;
+    }
+    .scroll-wheel {
+      width: 3px; height: 7px;
+      background: var(--primary-light);
+      border-radius: 2px;
+      animation: scrollWheel 2s ease-in-out infinite;
+    }
+    @keyframes scrollWheel {
+      0%,100% { opacity: 1; transform: translateY(0); }
+      50%      { opacity: 0.3; transform: translateY(6px); }
+    }
+    .scroll-text {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Stagger animations for tool cards */
+    .tools-grid .tool-card:nth-child(1) { transition-delay: 0.1s !important; }
+    .tools-grid .tool-card:nth-child(2) { transition-delay: 0.22s !important; }
+    .tools-grid .tool-card:nth-child(3) { transition-delay: 0.34s !important; }
+    .features-grid .feature-item:nth-child(1) { transition-delay: 0.05s; }
+    .features-grid .feature-item:nth-child(2) { transition-delay: 0.15s; }
+    .features-grid .feature-item:nth-child(3) { transition-delay: 0.25s; }
+    .features-grid .feature-item:nth-child(4) { transition-delay: 0.35s; }
+
+    /* Appointment CTA section */
+    .cta-section {
+      padding: var(--section-py) 0;
+      text-align: center;
+    }
+    .cta-card {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem;
+      background: linear-gradient(135deg, rgba(25,146,176,0.12) 0%, rgba(255,149,0,0.08) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-glow);
+    }
+    .cta-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .cta-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.875rem;
+    }
+    .cta-desc {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Horizontal divider with label */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+
+      <a href="index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="tests/phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="tests/gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="tests/dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="tests/ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+        <a href="https://www.sunnycare.vn/dat-lich-hen" target="_blank" rel="noopener" class="nav-btn-primary" data-vi="📅 Đặt Lịch" data-en="📅 Book Now">📅 Đặt Lịch</a>
+      </div>
+
+      <div class="nav-controls">
+        <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+          <span class="lang-vi active">VI</span>
+          <span class="lang-divider">|</span>
+          <span class="lang-en">EN</span>
+        </button>
+        <button class="music-toggle" id="musicToggle" aria-label="Open ambient music player">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Toggle mobile menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MUSIC PLAYER PANEL
+  ════════════════════════════════════════════════════════ -->
+  <div class="music-player" id="musicPlayer" role="region" aria-label="Ambient music player">
+    <div class="music-header">
+      <span class="music-title" data-vi="🎵 Nhạc Thiền Định" data-en="🎵 Ambient Music">🎵 Nhạc Thiền Định</span>
+      <button class="music-close" id="musicClose" aria-label="Close music player">✕</button>
+    </div>
+    <div class="music-tracks">
+      <button class="track-btn active" data-track="rain">🌧️ Mưa</button>
+      <button class="track-btn" data-track="ocean">🌊 Biển</button>
+      <button class="track-btn" data-track="forest">🌲 Rừng</button>
+      <button class="track-btn" data-track="piano">🎹 Piano</button>
+      <button class="track-btn" data-track="wind">💨 Gió</button>
+    </div>
+    <div class="music-controls">
+      <button class="play-pause-btn" id="playPauseBtn" aria-label="Play or pause music">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" aria-label="Volume">
+      <span class="volume-icon" aria-hidden="true">🔊</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero-blobs" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge" data-vi="🌿 Không gian an toàn • Không phán xét • Luôn đồng hành" data-en="🌿 Safe space • Non-judgmental • Always with you">
+        🌿 Không gian an toàn • Không phán xét • Luôn đồng hành
+      </div>
+
+      <h1 class="hero-title">
+        <span data-vi="Hành Trình" data-en="Your Journey">Hành Trình</span>
+        <span class="gradient-text" data-vi="Chữa Lành" data-en="To Healing">Chữa Lành</span>
+        <span data-vi="Bắt Đầu Từ Đây" data-en="Begins Here">Bắt Đầu Từ Đây</span>
+      </h1>
+
+      <p class="hero-desc" data-vi="Khám phá sức khỏe tâm lý của bạn với những công cụ chuyên nghiệp, được xây dựng bởi đội ngũ chuyên gia tâm lý. Mỗi bước bạn đi là một hành động dũng cảm đáng được trân trọng." data-en="Explore your psychological wellbeing with professional tools, built by mental health experts. Every step you take is an act of courage worthy of recognition.">
+        Khám phá sức khỏe tâm lý của bạn với những công cụ chuyên nghiệp, được xây dựng bởi đội ngũ chuyên gia tâm lý. Mỗi bước bạn đi là một hành động dũng cảm đáng được trân trọng.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#testHub" class="btn-primary" id="heroStartBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          <span data-vi="Bắt Đầu Trắc Nghiệm" data-en="Start Assessment">Bắt Đầu Trắc Nghiệm</span>
+        </a>
+        <a href="#tools" class="btn-secondary">
+          <span data-vi="Khám Phá Công Cụ" data-en="Explore Tools">Khám Phá Công Cụ</span>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label" data-vi="Bài Trắc Nghiệm" data-en="Assessments">Bài Trắc Nghiệm</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label" data-vi="Miễn Phí" data-en="Free">Miễn Phí</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat-num">💙</span>
+          <span class="stat-label" data-vi="Bảo Mật & An Toàn" data-en="Private & Safe">Bảo Mật & An Toàn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-mouse"><span class="scroll-wheel"></span></div>
+      <span class="scroll-text" data-vi="Khám phá" data-en="Explore">Khám phá</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INSPIRATIONAL QUOTES CAROUSEL
+  ════════════════════════════════════════════════════════ -->
+  <section class="quotes-section" aria-label="Quotes carousel">
+    <div class="quotes-container">
+      <div class="quote-icon" aria-hidden="true">"</div>
+      <div class="quote-content" id="quoteContent" aria-live="polite">
+        <p class="quote-text" id="quoteText">...đang tải câu trích dẫn...</p>
+        <p class="quote-author" id="quoteAuthor"></p>
+      </div>
+      <div class="quote-dots" id="quoteDots" role="tablist" aria-label="Quote navigation"></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ═══════════════════════════════════════════════════════
+       TOOLS SECTION
+  ════════════════════════════════════════════════════════ -->
+  <section class="tools-section" id="tools" aria-labelledby="toolsHeading">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-vi="Công Cụ Của Chúng Tôi" data-en="Our Tools">Công Cụ Của Chúng Tôi</span>
+        <h2 id="toolsHeading" class="section-title" data-vi="Đồng Hành Trên Mọi Hành Trình" data-en="Alongside You Every Step">Đồng Hành Trên Mọi Hành Trình</h2>
+        <p class="section-desc" data-vi="Bộ công cụ toàn diện giúp bạn hiểu rõ hơn về sức khỏe tâm lý của mình — khoa học, nhân văn, bảo mật." data-en="A comprehensive set of tools to help you understand your mental health — scientific, humane, and private.">
+          Bộ công cụ toàn diện giúp bạn hiểu rõ hơn về sức khỏe tâm lý của mình — khoa học, nhân văn, bảo mật.
+        </p>
+      </div>
+
+      <div class="tools-grid">
+        <!-- Tests Card -->
+        <article class="tool-card tests-card" id="testHub" tabindex="0">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon-wrap">
+            <div class="card-icon" aria-hidden="true">📋</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title" data-vi="Trắc Nghiệm Tâm Lý" data-en="Psychological Assessments">Trắc Nghiệm Tâm Lý</h3>
+            <p class="card-desc" data-vi="Các bộ trắc nghiệm chuẩn lâm sàng giúp bạn hiểu rõ trạng thái cảm xúc, lo âu, stress và trầm cảm. Kết quả cá nhân hóa gửi về email của bạn." data-en="Clinically validated screening tools to help you understand your emotional state, anxiety, stress, and depression. Personalized results delivered to your email.">
+              Các bộ trắc nghiệm chuẩn lâm sàng giúp bạn hiểu rõ trạng thái cảm xúc, lo âu, stress và trầm cảm. Kết quả cá nhân hóa gửi về email của bạn.
+            </p>
+            <div class="card-tags" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch; width: 100%; margin-top: 1rem;">
+              <a href="tests/phq9.html" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem; justify-content: center; background: rgba(33,150,243,0.1); color: var(--primary-light); border-color: rgba(33,150,243,0.2)" data-vi="Sàng Lọc Trầm Cảm (PHQ-9)" data-en="Depression Test (PHQ-9)">Sàng Lọc Trầm Cảm (PHQ-9)</a>
+              <a href="tests/gad7.html" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem; justify-content: center; background: rgba(33,150,243,0.1); color: var(--primary-light); border-color: rgba(33,150,243,0.2)" data-vi="Đo Lường Lo Âu (GAD-7)" data-en="Anxiety Test (GAD-7)">Đo Lường Lo Âu (GAD-7)</a>
+              <a href="tests/dass21.html" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem; justify-content: center; background: rgba(33,150,243,0.1); color: var(--primary-light); border-color: rgba(33,150,243,0.2)" data-vi="Đánh Giá Stress (DASS-21)" data-en="Stress Test (DASS-21)">Đánh Giá Stress (DASS-21)</a>
+              <a href="tests/ace.html" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem; justify-content: center; background: rgba(33,150,243,0.1); color: var(--primary-light); border-color: rgba(33,150,243,0.2)" data-vi="Dấu Ấn Tuổi Thơ (ACE Score)" data-en="Childhood Trauma (ACE)">Dấu Ấn Tuổi Thơ (ACE Score)</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Journal Card -->
+        <article class="tool-card journal-card" tabindex="0">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon-wrap">
+            <div class="card-icon" aria-hidden="true">📓</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title" data-vi="Nhật Ký Cảm Xúc" data-en="Emotion Journal">Nhật Ký Cảm Xúc</h3>
+            <p class="card-desc" data-vi="Theo dõi hành trình cảm xúc của bạn mỗi ngày với Emotion Wheel, Mood Tracker và Journaling. Hoàn toàn riêng tư — chỉ bạn mới có thể đọc." data-en="Track your emotional journey daily with Emotion Wheel, Mood Tracker, and Journaling. Completely private — only you can read it.">
+              Theo dõi hành trình cảm xúc của bạn mỗi ngày với Emotion Wheel, Mood Tracker và Journaling. Hoàn toàn riêng tư — chỉ bạn mới có thể đọc.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Mood Tracker</span>
+              <span class="tag">Emotion Wheel</span>
+              <span class="tag">Journaling</span>
+            </div>
+            <a href="journal/auth.html" class="card-cta" data-vi="Mở Nhật Ký →" data-en="Open Journal →">Mở Nhật Ký →</a>
+          </div>
+        </article>
+
+        <!-- Wellness Tools Card -->
+        <article class="tool-card breathing-card" tabindex="0">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon-wrap">
+            <div class="card-icon" aria-hidden="true">🧘</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title" data-vi="Điều Tiết Cảm Xúc" data-en="Emotion Regulation">Điều Tiết Cảm Xúc</h3>
+            <p class="card-desc" data-vi="Bài tập thở, kỹ thuật grounding 5-4-3-2-1 và mindfulness giúp bạn tìm lại bình yên trong từng khoảnh khắc. Kèm hiệu ứng âm thanh nhẹ nhàng." data-en="Breathing exercises, 5-4-3-2-1 grounding, and mindfulness to help you find peace at any moment. With gentle sound effects.">
+              Bài tập thở, kỹ thuật grounding 5-4-3-2-1 và mindfulness giúp bạn tìm lại bình yên trong từng khoảnh khắc. Kèm hiệu ứng âm thanh nhẹ nhàng.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Box Breathing</span>
+              <span class="tag">4-7-8</span>
+              <span class="tag">Grounding</span>
+              <span class="tag">Mindfulness</span>
+            </div>
+            <a href="tools/breathing.html" class="card-cta" data-vi="Bắt Đầu Ngay →" data-en="Start Now →">Bắt Đầu Ngay →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURES / TRUST INDICATORS
+  ════════════════════════════════════════════════════════ -->
+  <section class="features-section" aria-labelledby="featuresHeading">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-vi="Cam Kết Của Chúng Tôi" data-en="Our Commitment">Cam Kết Của Chúng Tôi</span>
+        <h2 id="featuresHeading" class="section-title" data-vi="Bạn Xứng Đáng Được Chăm Sóc" data-en="You Deserve Care">Bạn Xứng Đáng Được Chăm Sóc</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">🔒</span>
+          <h4 class="feature-title" data-vi="Bảo Mật Tuyệt Đối" data-en="Absolute Privacy">Bảo Mật Tuyệt Đối</h4>
+          <p class="feature-desc" data-vi="Dữ liệu của bạn được bảo vệ nghiêm ngặt và không bao giờ được chia sẻ với bên thứ ba." data-en="Your data is strictly protected and never shared with any third party.">Dữ liệu của bạn được bảo vệ nghiêm ngặt và không bao giờ được chia sẻ với bên thứ ba.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">🌿</span>
+          <h4 class="feature-title" data-vi="Không Phán Xét" data-en="Non-Judgmental">Không Phán Xét</h4>
+          <p class="feature-desc" data-vi="Mọi kết quả đều được tiếp nhận với sự tôn trọng và đồng cảm sâu sắc." data-en="All results are received with deep respect and empathy.">Mọi kết quả đều được tiếp nhận với sự tôn trọng và đồng cảm sâu sắc.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">🎯</span>
+          <h4 class="feature-title" data-vi="Chuẩn Lâm Sàng" data-en="Clinically Validated">Chuẩn Lâm Sàng</h4>
+          <p class="feature-desc" data-vi="Tất cả công cụ được xây dựng theo tiêu chuẩn tâm lý học quốc tế (DSM-5, ICD-11)." data-en="All tools are built to international psychological standards (DSM-5, ICD-11).">Tất cả công cụ được xây dựng theo tiêu chuẩn tâm lý học quốc tế (DSM-5, ICD-11).</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">💌</span>
+          <h4 class="feature-title" data-vi="Cá Nhân Hóa" data-en="Personalized">Cá Nhân Hóa</h4>
+          <p class="feature-desc" data-vi="Kết quả và gợi ý được điều chỉnh riêng cho từng cá nhân theo đúng tên bạn." data-en="Results and recommendations tailored specifically for you, addressed personally.">Kết quả và gợi ý được điều chỉnh riêng cho từng cá nhân theo đúng tên bạn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ═══════════════════════════════════════════════════════
+       APPOINTMENT CTA
+  ════════════════════════════════════════════════════════ -->
+  <section class="cta-section" aria-label="Book appointment">
+    <div class="section-container">
+      <div class="cta-card">
+        <span class="cta-emoji" aria-hidden="true">🌸</span>
+        <h2 class="cta-title" data-vi="Sẵn Sàng Nói Chuyện Với Chuyên Gia?" data-en="Ready to Talk to a Professional?">Sẵn Sàng Nói Chuyện Với Chuyên Gia?</h2>
+        <p class="cta-desc" data-vi="Đội ngũ chuyên gia tâm lý của SunnyCare luôn sẵn sàng đồng hành cùng bạn. Đặt lịch tư vấn ngay hôm nay để bắt đầu hành trình chữa lành." data-en="SunnyCare's team of psychology professionals is always ready to accompany you. Book a consultation today to begin your healing journey.">
+          Đội ngũ chuyên gia tâm lý của SunnyCare luôn sẵn sàng đồng hành cùng bạn. Đặt lịch tư vấn ngay hôm nay để bắt đầu hành trình chữa lành.
+        </p>
+        <div class="cta-actions">
+          <a href="https://www.sunnycare.vn/dat-lich-hen" target="_blank" rel="noopener" class="btn-accent">
+            <span data-vi="📅 Đặt Lịch Tư Vấn" data-en="📅 Book a Consultation">📅 Đặt Lịch Tư Vấn</span>
+          </a>
+          <a href="tel:02873006848" class="btn-secondary">
+            <span data-vi="📞 028 7300 6848" data-en="📞 028 7300 6848">📞 028 7300 6848</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="brand-name-text brand-name-lg">SUNNYCARE</span>
+        </div>
+        <p class="footer-tagline" data-vi="Đồng hành trên hành trình chữa lành của bạn" data-en="Alongside you on your healing journey">Đồng hành trên hành trình chữa lành của bạn</p>
+        <div class="footer-contact">
+          <a href="tel:02873006848" aria-label="Call SunnyCare">📞 028 7300 6848</a>
+          <a href="mailto:infoasst@sunnycare.vn" aria-label="Email SunnyCare">✉️ infoasst@sunnycare.vn</a>
+          <a href="https://www.sunnycare.vn/dat-lich-hen" target="_blank" rel="noopener">📅 <span data-vi="Đặt lịch tư vấn" data-en="Book a consultation">Đặt lịch tư vấn</span></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h5 data-vi="Trắc Nghiệm" data-en="Assessments">Trắc Nghiệm</h5>
+        <a href="tests/phq9.html" data-vi="PHQ-9 – Trầm Cảm" data-en="PHQ-9 – Depression">PHQ-9 – Trầm Cảm</a>
+        <a href="tests/gad7.html" data-vi="GAD-7 – Lo Âu" data-en="GAD-7 – Anxiety">GAD-7 – Lo Âu</a>
+        <a href="tests/dass21.html" data-vi="DASS-21 – Stress" data-en="DASS-21 – Stress">DASS-21 – Stress</a>
+        <a href="tests/ace.html" data-vi="ACE Score– Tuổi Thơ" data-en="ACE Score – Childhood">ACE Score – Tuổi Thơ</a>
+      </div>
+
+      <div class="footer-links">
+        <h5 data-vi="Công Cụ Hỗ Trợ" data-en="Wellness Tools">Công Cụ Hỗ Trợ</h5>
+        <a href="tools/breathing.html" data-vi="Bài Tập Thở" data-en="Breathing Exercises">Bài Tập Thở</a>
+        <a href="tools/grounding.html" data-vi="Grounding 5-4-3-2-1" data-en="5-4-3-2-1 Grounding">Grounding 5-4-3-2-1</a>
+        <a href="tools/mindfulness.html" data-vi="Mindfulness" data-en="Mindfulness">Mindfulness</a>
+        <a href="journal/auth.html" data-vi="Nhật Ký Cảm Xúc" data-en="Emotion Journal">Nhật Ký Cảm Xúc</a>
+      </div>
+
+      <div class="footer-disclaimer">
+        <p data-vi="⚠️ Các công cụ trên đây là công cụ sàng lọc tâm lý, không thay thế chẩn đoán lâm sàng từ chuyên gia. Nếu bạn đang trải qua khó khăn nghiêm trọng, hãy liên hệ chuyên gia hoặc gọi đường dây hỗ trợ 028 7300 6848." data-en="⚠️ These are psychological screening tools, not clinical diagnoses. If you are in serious distress, please contact a professional or call the crisis line 028 7300 6848.">
+          ⚠️ Các công cụ trên đây là công cụ sàng lọc tâm lý, không thay thế chẩn đoán lâm sàng từ chuyên gia. Nếu bạn đang trải qua khó khăn nghiêm trọng, hãy liên hệ chuyên gia hoặc gọi đường dây hỗ trợ 028 7300 6848.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 SUNNYCARE. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CRISIS BANNER
+  ════════════════════════════════════════════════════════ -->
+  <div class="crisis-banner" id="crisisBanner" role="complementary" aria-label="Crisis support">
+    <div class="crisis-content">
+      <span class="crisis-icon" aria-hidden="true">💙</span>
+      <span class="crisis-text" data-vi="Bạn đang trải qua giai đoạn khó khăn? Chúng tôi luôn ở đây —" data-en="Going through a difficult time? We're always here —">
+        Bạn đang trải qua giai đoạn khó khăn? Chúng tôi luôn ở đây —
+      </span>
+      <a href="tel:0896397968" class="crisis-link">🆘 089 639 7968</a>
+    </div>
+    <button class="crisis-close" id="crisisClose" aria-label="Close crisis banner">✕</button>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ─── SCRIPTS ──────────────────────────────────────────────────────────── -->
+  <script src="js/quotes.js?v=2030"></script>
+  <script src="js/music.js?v=2030"></script>
+  <script src="js/api.js?v=2030"></script>
+  <script src="js/app.js?v=2030"></script>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

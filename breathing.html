@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Tập Thở | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <style>
+    .tools-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+      position: relative;
+    }
+    
+    .breath-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 2rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .breath-circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary-light) 0%, var(--primary-dark) 100%);
+      box-shadow: 0 0 50px var(--primary-glow);
+      transition-property: transform, background, box-shadow;
+      transition-timing-function: ease-in-out;
+    }
+
+    .breath-content {
+      position: absolute;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .breath-content .instruction {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: opacity 0.5s;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .breath-timer {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-top: 0.2rem;
+      opacity: 0;
+      transition: opacity 0.5s;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .breath-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .active-breath.inhale {
+      transform: scale(1.6);
+      background: radial-gradient(circle, #4fb9d4 0%, #1992b0 100%);
+      box-shadow: 0 0 80px rgba(79, 185, 212, 0.4);
+    }
+    .active-breath.hold {
+      transform: scale(1.6);
+      background: radial-gradient(circle, #fbd38d 0%, #f59e0b 100%);
+      box-shadow: 0 0 80px rgba(245, 158, 11, 0.4);
+    }
+    .active-breath.exhale {
+      transform: scale(0.7);
+      background: radial-gradient(circle, #127a96 0%, #0c1e30 100%);
+      box-shadow: 0 0 30px rgba(25, 146, 176, 0.2);
+    }
+    .active-breath.hold-empty {
+      transform: scale(0.7);
+      background: radial-gradient(circle, #eab308 0%, #b45309 100%);
+      box-shadow: 0 0 30px rgba(234, 179, 8, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tests/phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="../tests/gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="../tests/dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="../tests/ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+        <button class="music-toggle" id="musicToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-header">
+      <span class="music-title">🎵 Nhạc Thiền Định</span>
+      <button class="music-close" id="musicClose">✕</button>
+    </div>
+    <div class="music-tracks">
+      <button class="track-btn active" data-track="rain">🌧️ Mưa</button>
+      <button class="track-btn" data-track="ocean">🌊 Biển</button>
+      <button class="track-btn" data-track="forest">🌲 Rừng</button>
+      <button class="track-btn" data-track="piano">🎹 Piano</button>
+    </div>
+    <div class="music-controls">
+      <button class="play-pause-btn" id="playPauseBtn">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+    </div>
+  </div>
+
+  <main class="tools-page text-center">
+    <div style="text-align: center; max-width: 600px; z-index: 1;">
+      <h1 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 1rem;" data-vi="Thở Tỉnh Thức" data-en="Mindful Breathing">Thở Tỉnh Thức</h1>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-vi="Hãy để âm nhạc xoa dịu bạn. Chọn bài tập thở phù hợp và thả lỏng cơ thể." data-en="Let the music soothe you. Choose a breathing exercise and relax your body.">
+        Hãy để âm nhạc xoa dịu bạn. Chọn bài tập thở phù hợp và thả lỏng cơ thể.
+      </p>
+
+      <div class="breath-controls" style="margin-bottom: 1rem;">
+        <button class="btn-secondary active" id="btnBox" data-vi="Thở Hộp (4-4-4-4)" data-en="Box Breathing (4-4-4-4)">Thở Hộp (4-4-4-4)</button>
+        <button class="btn-secondary" id="btnRelax" data-vi="Thư Giãn (4-7-8)" data-en="Relaxing (4-7-8)">Thư Giãn (4-7-8)</button>
+        <button class="btn-secondary" id="btnCalm" data-vi="Bình Tĩnh (5-5)" data-en="Calming (5-5)">Bình Tĩnh (5-5)</button>
+      </div>
+
+      <div class="breath-note" id="breathNote" style="font-size: 0.95rem; color: var(--primary-light); margin-bottom: 3rem; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center; font-style: italic; line-height: 1.4;">
+        💡 Thích hợp để làm dịu cơn hoảng loạn, giảm căng thẳng nhanh chóng và lấy lại sự tập trung.
+      </div>
+
+      <div class="breath-container">
+        <div class="breath-circle" id="breathCircle"></div>
+        <div class="breath-content">
+          <span class="instruction" id="breathText" data-vi="SẴN SÀNG" data-en="READY">SẴN SÀNG</span>
+          <span class="breath-timer" id="breathTimer"></span>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="startBreathBtn" style="margin-top: 1rem; width: 200px; justify-content: center;">
+        BẮT ĐẦU
+      </button>
+    </div>
+  </main>
+
+  <script src="../js/music.js?v=2030"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const circle = document.getElementById('breathCircle');
+      const text = document.getElementById('breathText');
+      const startBtn = document.getElementById('startBreathBtn');
+      const isEn = window.SC?.currentLang() === 'en';
+      
+      let isRunning = false;
+      let timeoutId = null;
+      let timerInterval = null;
+      const timerEl = document.getElementById('breathTimer');
+      
+      // ─── AUDIO ENGINE (Synthetic Wind / Breath Sound) ──────────────────────
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      let audioCtx = null;
+      let noiseSource = null;
+      let filter = null;
+      let gainNode = null;
+
+      function initAudio() {
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+      }
+
+      function stopBreathSound() {
+        if (noiseSource) {
+          try { noiseSource.stop(); noiseSource.disconnect(); } catch(e){}
+        }
+      }
+
+      function playBreathSound(type, durationMs) {
+        if (!audioCtx) return;
+        stopBreathSound();
+        
+        const t = audioCtx.currentTime;
+        const dur = durationMs / 1000;
+        
+        // Use 2 seconds of looping white noise
+        const bufferSize = audioCtx.sampleRate * 2; 
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        
+        noiseSource = audioCtx.createBufferSource();
+        noiseSource.buffer = buffer;
+        noiseSource.loop = true;
+        
+        filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass'; // Lowpass sounds more like human breath than bandpass
+        filter.Q.value = 0.5; // Very soft resonance
+        
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0, t);
+        
+        noiseSource.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        noiseSource.start(t);
+        
+        // Slightly higher volume since lowpass removes a lot of energy
+        const MAX_VOL = 0.8; 
+
+        if (type === 'inhale') {
+          // Âm sắc mở dần lên
+          filter.frequency.setValueAtTime(250, t);
+          filter.frequency.exponentialRampToValueAtTime(1200, t + dur);
+          
+          // Âm lượng to dần lên mượt mà (Swell up) rồi giảm nhẹ ở cuối
+          gainNode.gain.setValueAtTime(0, t);
+          gainNode.gain.linearRampToValueAtTime(MAX_VOL * 0.8, t + dur * 0.4);
+          gainNode.gain.linearRampToValueAtTime(MAX_VOL, t + dur * 0.8);
+          gainNode.gain.linearRampToValueAtTime(0, t + dur);
+        } else if (type === 'exhale') {
+          // Âm sắc đóng dần lại
+          filter.frequency.setValueAtTime(1200, t);
+          filter.frequency.exponentialRampToValueAtTime(250, t + dur);
+          
+          // Thở ra rất nhẹ nhàng: to lên từ từ rối bé dần đi cạn kiệt
+          gainNode.gain.setValueAtTime(0, t);
+          gainNode.gain.linearRampToValueAtTime(MAX_VOL * 0.6, t + dur * 0.3);
+          gainNode.gain.linearRampToValueAtTime(MAX_VOL * 0.3, t + dur * 0.7);
+          gainNode.gain.linearRampToValueAtTime(0, t + dur);
+        } else {
+          gainNode.gain.value = 0;
+        }
+      }
+      // ───────────────────────────────────────────────────────────────────────
+
+      const patterns = {
+        box: [
+          { phase: 'inhale', vi: 'HÍT VÀO', en: 'INHALE', duration: 4000 },
+          { phase: 'hold', vi: 'GIỮ', en: 'HOLD', duration: 4000 },
+          { phase: 'exhale', vi: 'THỞ RA', en: 'EXHALE', duration: 4000 },
+          { phase: 'hold-empty', vi: 'GIỮ', en: 'HOLD', duration: 4000 }
+        ],
+        relax: [
+          { phase: 'inhale', vi: 'HÍT VÀO', en: 'INHALE', duration: 4000 },
+          { phase: 'hold', vi: 'GIỮ', en: 'HOLD', duration: 7000 },
+          { phase: 'exhale', vi: 'THỞ RA TỪ TỪ', en: 'EXHALE SLOWLY', duration: 8000 }
+        ],
+        calm: [
+          { phase: 'inhale', vi: 'HÍT VÀO', en: 'INHALE', duration: 5000 },
+          { phase: 'exhale', vi: 'THỞ RA', en: 'EXHALE', duration: 5000 }
+        ]
+      };
+
+      let currentPattern = patterns.box;
+      let phaseIndex = 0;
+
+      // Select pattern
+      document.querySelectorAll('.breath-controls .btn-secondary').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.breath-controls .btn-secondary').forEach(b => b.classList.remove('btn-primary'));
+          e.target.classList.add('btn-primary');
+          
+          let noteHtml = '';
+          if(e.target.id === 'btnBox') {
+            currentPattern = patterns.box;
+            noteHtml = isEn ? '💡 Best for calming panic, fast stress relief, and regaining sharp focus.' : '💡 Thích hợp để làm dịu cơn hoảng loạn, giảm căng thẳng nhanh chóng và lấy lại sự tập trung.';
+          }
+          if(e.target.id === 'btnRelax') {
+            currentPattern = patterns.relax;
+            noteHtml = isEn ? '💡 Ideal for anxiety and restlessness, helps body relax deeply and promotes sleep.' : '💡 Lý tưởng khi lo âu, bồn chồn khó ngủ, giúp cơ thể thả lỏng sâu êm ái.';
+          }
+          if(e.target.id === 'btnCalm') {
+            currentPattern = patterns.calm;
+            noteHtml = isEn ? '💡 Suitable for gentle calmness, balancing heart rate, and ordinary emotion regulation.' : '💡 Thích hợp tĩnh tâm nhẹ nhàng, cân bằng nhịp tim và điều hòa những cảm xúc mệt mỏi thường ngày.';
+          }
+          document.getElementById('breathNote').innerHTML = noteHtml;
+          
+          stopBreathing();
+        });
+      });
+
+      function runPhase() {
+        if (!isRunning) return;
+        const phase = currentPattern[phaseIndex];
+        
+        // Setup transition duration
+        circle.style.transitionDuration = `${phase.duration}ms`;
+        
+        // Remove old classes
+        circle.classList.remove('inhale', 'hold', 'exhale', 'hold-empty', 'active-breath');
+        
+        // Request animation frame to ensure transition triggers
+        requestAnimationFrame(() => {
+          circle.classList.add('active-breath', phase.phase);
+          text.textContent = isEn ? phase.en : phase.vi;
+          
+          playBreathSound(phase.phase, phase.duration);
+          
+          let timeLeft = Math.round(phase.duration / 1000);
+          timerEl.style.opacity = '1';
+          timerEl.textContent = timeLeft;
+          
+          clearInterval(timerInterval);
+          timerInterval = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+              timerEl.textContent = timeLeft;
+            } else {
+              clearInterval(timerInterval);
+            }
+          }, 1000);
+          
+          timeoutId = setTimeout(() => {
+            clearInterval(timerInterval);
+            phaseIndex = (phaseIndex + 1) % currentPattern.length;
+            runPhase();
+          }, phase.duration);
+        });
+      }
+
+      function stopBreathing() {
+        isRunning = false;
+        clearTimeout(timeoutId);
+        clearInterval(timerInterval);
+        stopBreathSound();
+        circle.classList.remove('inhale', 'hold', 'exhale', 'hold-empty', 'active-breath');
+        circle.style.transitionDuration = '1s';
+        text.textContent = isEn ? 'SẴN SÀNG' : 'SẴN SÀNG';
+        timerEl.style.opacity = '0';
+        startBtn.textContent = 'BẮT ĐẦU';
+      }
+
+      startBtn.addEventListener('click', () => {
+        if (isRunning) {
+          stopBreathing();
+        } else {
+          initAudio();
+          isRunning = true;
+          phaseIndex = 0;
+          startBtn.textContent = 'DỪNG LẠI';
+          
+          // Tự động tắt nhạc nền khi bắt đầu hít thở (nếu đang bật)
+          if(window.ambientSound && window.ambientSound.isPlaying) {
+             const playPauseBtn = document.getElementById('playPauseBtn');
+             if (playPauseBtn) playPauseBtn.click();
+          }
+          
+          runPhase();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

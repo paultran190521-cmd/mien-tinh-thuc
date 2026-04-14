@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grounding 5-4-3-2-1 | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <style>
+    .tools-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+    }
+    
+    .grounding-container {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    .step-card.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .step-num {
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 0.8;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.2;
+      position: absolute;
+      top: -10px; right: 20px;
+    }
+
+    .step-title {
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .input-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .input-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .input-item .form-input {
+      background: rgba(25, 146, 176, 0.08); /* slightly higher contrast */
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .celebration {
+      text-align: center;
+      display: none;
+    }
+    .celebration.active {
+      display: block;
+      animation: fadeInUp 0.8s ease;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tests/phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="../tests/gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="../tests/dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="../tests/ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+        <button class="music-toggle" id="musicToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-header">
+      <span class="music-title">🎵 Nhạc Thiền Định</span>
+      <button class="music-close" id="musicClose">✕</button>
+    </div>
+    <div class="music-tracks">
+      <button class="track-btn active" data-track="rain">🌧️ Mưa</button>
+      <button class="track-btn" data-track="ocean">🌊 Biển</button>
+      <button class="track-btn" data-track="forest">🌲 Rừng</button>
+      <button class="track-btn" data-track="piano">🎹 Piano</button>
+    </div>
+    <div class="music-controls">
+      <button class="play-pause-btn" id="playPauseBtn">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+    </div>
+  </div>
+
+  <main class="tools-page">
+    <div class="grounding-container">
+      
+      <!-- INTRO -->
+      <div id="step-0" class="step-card active" style="text-align: center;">
+        <h1 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Kỹ Thuật 5-4-3-2-1</h1>
+        <p class="step-desc" style="max-width: 600px; margin: 0 auto 2rem;">
+          Khi cơn hoảng loạn hay lo âu ập đến, phương pháp "Tiếp Đất" (Grounding) này sẽ giúp đưa tâm trí bạn trở về hiện tại bằng cách kết nối với 5 giác quan.
+        </p>
+        <button class="btn-primary" onclick="nextStep(1)">BẮT ĐẦU KẾT NỐI</button>
+      </div>
+
+      <!-- 5 - SEE -->
+      <div id="step-1" class="step-card position-relative">
+        <div class="step-num">5</div>
+        <h2 class="step-title">👀 Nhìn</h2>
+        <p class="step-desc">Hãy nhìn quanh căn phòng và tìm <strong>5 ĐIỀU</strong> bạn có thể nhìn thấy. Hãy chú ý đến chi tiết, màu sắc và hình dáng của chúng.</p>
+        <div class="input-list">
+          <input type="text" class="form-input" placeholder="Ví dụ: Một chiếc lá trên cây...">
+          <input type="text" class="form-input" placeholder="Thứ hai là...">
+          <input type="text" class="form-input" placeholder="Thứ ba là...">
+          <input type="text" class="form-input" placeholder="Thứ tư là...">
+          <input type="text" class="form-input" placeholder="Thứ năm là...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="nextStep(0)">Quay Lại</button>
+          <button class="btn-primary" onclick="nextStep(2)">Tiếp Tục</button>
+        </div>
+      </div>
+
+      <!-- 4 - TOUCH -->
+      <div id="step-2" class="step-card position-relative">
+        <div class="step-num">4</div>
+        <h2 class="step-title">✋ Chạm</h2>
+        <p class="step-desc">Hãy tập trung vào cơ thể bạn và tìm <strong>4 ĐIỀU</strong> bạn có thể cảm nhận hoặc chạm vào. Chú ý đến nhiệt độ và kết cấu của chúng.</p>
+        <div class="input-list">
+          <input type="text" class="form-input" placeholder="Ví dụ: Cảm giác vải áo chạm vào da...">
+          <input type="text" class="form-input" placeholder="...">
+          <input type="text" class="form-input" placeholder="...">
+          <input type="text" class="form-input" placeholder="...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="nextStep(1)">Quay Lại</button>
+          <button class="btn-primary" onclick="nextStep(3)">Tiếp Tục</button>
+        </div>
+      </div>
+
+      <!-- 3 - HEAR -->
+      <div id="step-3" class="step-card position-relative">
+        <div class="step-num">3</div>
+        <h2 class="step-title">👂 Nghe</h2>
+        <p class="step-desc">Lắng nghe thật kỹ và tìm <strong>3 ÂM THANH</strong> xung quanh mà bình thường bạn không để ý. (Có thể là tiếng nhạc nền của app).</p>
+        <div class="input-list">
+          <input type="text" class="form-input" placeholder="Ví dụ: Tiếng quạt trần quay...">
+          <input type="text" class="form-input" placeholder="...">
+          <input type="text" class="form-input" placeholder="...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="nextStep(2)">Quay Lại</button>
+          <button class="btn-primary" onclick="nextStep(4)">Tiếp Tục</button>
+        </div>
+      </div>
+
+      <!-- 2 - SMELL -->
+      <div id="step-4" class="step-card position-relative">
+        <div class="step-num">2</div>
+        <h2 class="step-title">👃 Ngửi</h2>
+        <p class="step-desc">Hít một hơi thật sâu và tìm <strong>2 MÙI HƯƠNG</strong> trong không khí quanh bạn. (Nếu không ngửi thấy gì, hãy nhớ lại 2 mùi bạn yêu thích).</p>
+        <div class="input-list">
+          <input type="text" class="form-input" placeholder="Ví dụ: Mùi cà phê, mùi sách cũ...">
+          <input type="text" class="form-input" placeholder="...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="nextStep(3)">Quay Lại</button>
+          <button class="btn-primary" onclick="nextStep(5)">Tiếp Tục</button>
+        </div>
+      </div>
+
+      <!-- 1 - TASTE -->
+      <div id="step-5" class="step-card position-relative">
+        <div class="step-num">1</div>
+        <h2 class="step-title">👅 Nếm</h2>
+        <p class="step-desc">Tìm <strong>1 ĐIỀU</strong> bạn có thể nếm rỏ ngay lúc này. Có thể là hương vị còn đọng lại của nước uống, thức ăn, hoặc chính hơi thở của bạn.</p>
+        <div class="input-list">
+          <input type="text" class="form-input" placeholder="...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="nextStep(4)">Quay Lại</button>
+          <button class="btn-primary" onclick="finishGrounding()">Hoàn Thành</button>
+        </div>
+      </div>
+
+      <!-- DONE -->
+      <div id="step-6" class="step-card celebration">
+        <div style="font-size: 5rem; margin-bottom: 1rem;">🌿</div>
+        <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 1rem;">Chào mừng bạn trở lại hiện tại</h2>
+        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem; line-height: 1.6;">
+          Bạn đã làm rất tốt. Khi bạn tập trung vào các giác quan, não bộ sẽ nhận biết và truyền đi tín hiệu rằng cơ thể bạn đang được an toàn ngay trong khoảnh khắc này.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="breathing.html" class="btn-secondary">Thở Tỉnh Thức</a>
+          <a href="../index.html" class="btn-primary">Về Trang Chủ</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="../js/music.js?v=2030"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script>
+    function nextStep(index) {
+      document.querySelectorAll('.step-card').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('step-' + index);
+      if(target) target.classList.add('active');
+    }
+
+    function finishGrounding() {
+      nextStep(6);
+      if(window.confetti) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      }
+    }
+  </script>
+</body>
+</html>

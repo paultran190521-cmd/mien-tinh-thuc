@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm ACE Score (Dấu Ấn Tuổi Thơ) | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <link rel="stylesheet" href="../css/tests.css?v=2030">
+  <style>
+    /* ACE specifics */
+    .ace-warning {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 4px solid var(--danger);
+      padding: 1.5rem;
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      margin-bottom: 2rem;
+    }
+    .ace-warning h4 { color: var(--danger); margin-bottom: 0.5rem; }
+    .ace-warning p { color: var(--text-primary); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="../tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="../tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="test-page">
+    <div class="test-container">
+
+      <!-- STEP 1: INTRO -->
+      <section id="stepIntro" class="test-step active">
+        <div class="intro-card">
+          <span class="test-badge" style="color:var(--danger); border-color:var(--danger); background:rgba(239,68,68,0.1)">ACE SCORE</span>
+          <h1 class="intro-title gradient-text" data-vi="Trải Nghiệm Tuổi Thơ Bất Lợi" data-en="Adverse Childhood Experiences">Trải Nghiệm Tuổi Thơ Bất Lợi</h1>
+          <p class="intro-desc" data-vi="ACE là bộ câu hỏi 10 mục khám phá những trải nghiệm khó khăn hoặc tổn thương lớn xảy ra trước sinh nhật 18 tuổi." data-en="The ACE Quiz is a 10-item measure used to explore difficult or traumatic experiences occurring prior to age 18.">
+            ACE là bộ câu hỏi 10 mục khám phá những trải nghiệm khó khăn hoặc tổn thương lớn xảy ra trước sinh nhật 18 tuổi.
+          </p>
+
+          <div class="ace-warning">
+            <h4 data-vi="⚠️ Lưu ý quan trọng trước khi bắt đầu" data-en="⚠️ Important note before starting">⚠️ Lưu ý quan trọng trước khi bắt đầu</h4>
+            <p data-vi="Trắc nghiệm này có chứa các câu hỏi nhạy cảm về lạm dụng, bạo lực thể xác, tinh thần và tình dục trong quá khứ. Nó có thể gợi lên những cảm xúc mạnh hoặc những ký ức khó khăn. Bạn có quyền DỪNG LẠI ở bất kỳ câu hỏi nào nếu cảm thấy không an toàn." data-en="This assessment contains sensitive questions regarding past physical, emotional, and sexual abuse. It may trigger strong emotions or difficult memories. You have the right to STOP at any question if you feel unsafe.">
+              Trắc nghiệm này có chứa các câu hỏi nhạy cảm về lạm dụng, bạo lực thể xác, tinh thần và tình dục trong quá khứ. Nó có thể gợi lên những cảm xúc mạnh hoặc những ký ức khó khăn. Bạn có quyền DỪNG LẠI ở bất kỳ câu hỏi nào nếu cảm thấy không an toàn.
+            </p>
+          </div>
+
+          <div class="agreement-box">
+            <label class="form-checkbox">
+              <input type="checkbox" id="agreeCheckbox">
+              <span class="form-checkbox-label" data-vi="Tôi đã hiểu bản chất nhaỵ cảm của bảng câu hỏi này và tôi tự nguyện trả lời. Tôi biết tôi có thể dừng lại bất cứ lúc nào." data-en="I understand the sensitive nature of this questionnaire and volunteer to respond. I know I can stop at any time.">
+                Tôi đã hiểu bản chất nhaỵ cảm của bảng câu hỏi này và tôi tự nguyện trả lời. Tôi biết tôi có thể dừng lại bất cứ lúc nào.
+              </span>
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-primary" id="startTestBtn"><span data-vi="Tiếp Tục (Tôi Đã Hiểu)" data-en="Continue (I Understand)">Tiếp Tục (Tôi Đã Hiểu)</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: TEST -->
+      <section id="stepTest" class="test-step">
+        <div class="test-header">
+          <div class="progress-info">
+            <span class="question-count" id="qCountTxt">Câu 1/10</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+          </div>
+        </div>
+
+        <div id="questionContainer"></div>
+
+        <div class="test-actions">
+          <button class="btn-secondary" id="prevBtn" style="visibility:hidden">Quay Lại</button>
+          <button class="btn-primary" id="nextBtn">Tiếp Theo</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: RESULT FORM -->
+      <section id="stepResult" class="test-step">
+        <div class="result-card">
+          <span class="completion-icon">💙</span>
+          <h2 class="result-title gradient-text" data-vi="Cảm Ơn Bạn Đã Dũng Cảm" data-en="Thank You For Your Courage">Cảm Ơn Bạn Đã Dũng Cảm</h2>
+          <p class="result-desc" data-vi="Phải mất rất nhiều sức mạnh để nhìn lại những vết thương cũ. Chúng tôi vô cùng trân trọng sự tin tưởng của bạn. Vui lòng để lại thông tin để chúng tôi có thể gửi phản hồi an toàn:" data-en="It takes a tremendous amount of strength to look at old wounds. We deeply appreciate your trust. Please leave your info so we can safely send feedback:">
+            Phải mất rất nhiều sức mạnh để nhìn lại những vết thương cũ. Chúng tôi vô cùng trân trọng sự tin tưởng của bạn. Vui lòng để lại thông tin để chúng tôi có thể gửi phản hồi an toàn:
+          </p>
+
+          <form id="leadForm" class="lead-form">
+            <div class="form-header"><h3>Nhận Diễn Giải Kín Đáo Qua Email</h3></div>
+            <div class="form-group">
+              <label class="form-label">Họ và Tên</label>
+              <input type="text" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số Điện Thoại (Tùy chọn)</label>
+              <input type="tel" name="phone" class="form-input">
+            </div>
+            <button type="submit" class="btn-primary submit-btn" id="submitResultsBtn">Gửi Điểm Số</button>
+          </form>
+
+          <div id="quickResultContent"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script src="../js/api.js?v=2030"></script>
+  <script src="../js/tests.js?v=2030"></script>
+  <script>
+    const aceQuestions = [
+      { vi: "Trước 18 tuổi, bạn có từng bị người lớn trong nhà chửi mắng, lăng mạ, hạ nhục, hay làm bạn sợ hãi rằng họ sẽ đánh bạn không?", en: "Before age 18, did a parent or other adult in the household often swear at you, insult you, put you down, or act in a way that made you afraid that you might be physically hurt?" },
+      { vi: "Trước 18 tuổi, người lớn trong nhà có từng đánh, tát, đẩy, hoặc ném đồ vật vào bạn, hay đánh bạn mạnh đến mức để lại vết thương không?", en: "Did a parent or other adult in the household often push, grab, slap, or throw something at you, or ever hit you so hard that you had marks or were injured?" },
+      { vi: "Trước 18 tuổi, bạn có từng bị một người lớn hay người lớn tuổi hơn ép chạm vào cơ thể họ theo cách tình dục, hay bắt bạn quan hệ tình dục không?", en: "Did an adult or person at least 5 years older than you ever touch or fondle you or have you touch their body in a sexual way, or attempt to have any type of sexual intercourse with you?" },
+      { vi: "Bạn có thường cảm thấy gia đình không yêu thương bạn, hoặc họ không quan tâm và ủng hộ lẫn nhau không?", en: "Did you often feel that no one in your family loved you or thought you were important or special, or that your family didn’t look out for each other?" },
+      { vi: "Bạn có thường không có đủ thức ăn, mặc quần áo bẩn thỉu, hay cha mẹ quá say xỉn/phê thuốc đến mức không chăm sóc hoặc đưa bạn đi khám bệnh khi cần không?", en: "Did you often feel that you didn't have enough to eat, had to wear dirty clothes, and had no one to protect you, or your parents were too drunk or high to take care of you?" },
+      { vi: "Cha mẹ bạn có từng ly thân hay ly hôn không?", en: "Were your parents ever separated or divorced?" },
+      { vi: "Mẹ bạn hoặc người phụ nữ nuôi dưỡng bạn có từng bị đẩy, tát, ném đồ vật, đánh đập, đá, hay đe dọa bằng vũ khí không?", en: "Was your mother or stepmother often pushed, grabbed, slapped, or had something thrown at her, or sometimes kicked, bitten, hit with a fist, or threatened with a weapon?" },
+      { vi: "Bạn có sống chung với ai đó có vấn đề về lạm dụng rượu hoặc ma túy không?", en: "Did you live with anyone who was a problem drinker or alcoholic or who used street drugs?" },
+      { vi: "Bạn có từng sống chung với một người bị trầm cảm, có bệnh tâm thần, hay từng cố ý tự kết liễu cuộc sống không?", en: "Was a household member depressed or mentally ill, or did a household member attempt suicide?" },
+      { vi: "Một thành viên trong gia đình bạn có từng phải ngồi tù không?", en: "Did a household member go to prison?" }
+    ];
+
+    const options = [
+      { value: 1, vi: "Có", en: "Yes" },
+      { value: 0, vi: "Không", en: "No" },
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new TestEngine({
+        testId: 'ACE',
+        questions: aceQuestions,
+        options: options,
+        scoringHandler: (answers) => {
+          const total = answers.reduce((sum, val) => sum + val, 0);
+          let vi, en, css, desc_vi, desc_en;
+          
+          if(total <= 1){ 
+            vi = 'Tối thiểu'; en = 'Low Risk'; css = 'minimal'; 
+            desc_vi = 'Điểm số cho thấy tuổi thơ của bạn ít phải đối mặt với các tổn thương dai dẳng. Dù vậy, những trải nghiệm nhỏ vẫn có thể ảnh hưởng đến bạn.';
+            desc_en = 'Your score indicates your childhood had fewer systemic traumatic stressors. Small experiences can still impact you, though.';
+          }
+          else if(total <= 3) { 
+            vi = 'Vừa phải'; en = 'Moderate Risk'; css = 'moderate'; 
+            desc_vi = 'Bạn đã phải trải qua một số khó khăn và tổn thương trong thời thơ ấu. Điều quan trọng là bạn đã sống sót và trưởng thành. Đừng bỏ qua những cảm xúc này.';
+            desc_en = 'You have gone through some difficult and traumatic experiences in childhood. It is important that you survived. Don\'t ignore these feelings.';
+          }
+          else { 
+            vi = 'Cao'; en = 'High Risk'; css = 'severe'; 
+            desc_vi = 'Những tổn thương tuổi thơ đã để lại dấu ấn rất sâu. Hiểu về nó không phải để đổ lỗi, mà để giúp bạn chữa lành. Sự kết nối với nhà trị liệu trauma-informed là cực kỳ cần thiết.';
+            desc_en = 'Childhood trauma has left a deep mark. Understanding this is not for placing blame, but for healing. Connecting with a trauma-informed therapist is highly necessary.';
+          }
+
+          return { total, severity_vi: vi, severity_en: en, cssClass: css, desc_vi, desc_en };
+        },
+        crisisHandler: null
+      });
+    });
+  </script>
+</body>
+</html>
