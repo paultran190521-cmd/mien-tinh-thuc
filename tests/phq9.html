@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm PHQ-9 (Trầm Cảm) | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <link rel="stylesheet" href="../css/tests.css?v=2030">
+</head>
+<body>
+  <!-- NAV (Simplified for inner pages) -->
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="../tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="../tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="test-page">
+    <div class="test-container">
+
+      <!-- STEP 1: INTRO -->
+      <section id="stepIntro" class="test-step active">
+        <div class="intro-card">
+          <span class="test-badge">PHQ-9 SCREENING</span>
+          <h1 class="intro-title gradient-text" data-vi="Trắc Nghiệm Trầm Cảm PHQ-9" data-en="PHQ-9 Depression Screening">Trắc Nghiệm Trầm Cảm PHQ-9</h1>
+          <p class="intro-desc" data-vi="PHQ-9 là công cụ chuẩn lâm sàng quốc tế đánh giá mức độ trầm cảm. Dành ra 5 phút để thành thật với chính mình." data-en="PHQ-9 is an international standard tool for assessing depression. Take 5 minutes to be honest with yourself.">
+            PHQ-9 là công cụ chuẩn lâm sàng quốc tế đánh giá mức độ trầm cảm. Dành ra 5 phút để thành thật với chính mình.
+          </p>
+
+          <div class="guidelines-list">
+            <div class="guide-item">
+              <span class="guide-icon">🌿</span>
+              <div class="guide-text">
+                <h4 data-vi="Không Gian" data-en="Environment">Không Gian</h4>
+                <p data-vi="Hãy tìm một góc yên tĩnh, hít thở sâu và thư giãn trước khi bắt đầu." data-en="Find a quiet spot, take a deep breath, and relax before starting."></p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">⏳</span>
+              <div class="guide-text">
+                <h4 data-vi="Thời Gian" data-en="TimeFrame">Thời Gian</h4>
+                <p data-vi="Hãy nhớ lại cảm xúc của bạn trong vòng 2 TUẦN QUA." data-en="Recall how you have been feeling over the PAST 2 WEEKS."></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="agreement-box">
+            <label class="form-checkbox">
+              <input type="checkbox" id="agreeCheckbox">
+              <span class="form-checkbox-label" data-vi="Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia." data-en="I understand this is a screening tool, not a medical diagnosis. I voluntarily agree to participate.">
+                Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia.
+              </span>
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-primary" id="startTestBtn">
+              <span data-vi="Bắt Đầu Làm Test" data-en="Start Assessment">Bắt Đầu Làm Test</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: TEST -->
+      <section id="stepTest" class="test-step">
+        <div class="test-header">
+          <div class="progress-info">
+            <span class="question-count" id="qCountTxt">Câu 1/9</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+          </div>
+          <div class="encouragement-msg" id="encourageMsg"></div>
+        </div>
+
+        <div id="questionContainer">
+          <!-- JS injects here -->
+        </div>
+
+        <div class="test-actions">
+          <button class="btn-secondary" id="prevBtn" style="visibility:hidden">
+            Quay Lại
+          </button>
+          <button class="btn-primary" id="nextBtn">
+            Tiếp Theo
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 3: RESULT FORM -->
+      <section id="stepResult" class="test-step">
+        <div class="result-card">
+          <span class="completion-icon">🎉</span>
+          <h2 class="result-title gradient-text" data-vi="Bạn Đã Hoàn Thành!" data-en="You Did It!">Bạn Đã Hoàn Thành!</h2>
+          <p class="result-desc" data-vi="Cảm ơn bạn đã dũng cảm đối diện với cảm xúc. Để xem kết quả và nhận email phân tích chi tiết từ chuyên gia, vui lòng để lại thông tin:" data-en="Thank you for bravely facing your emotions. To view your score and receive a detailed expert breakdown, please leave your info:">
+            Cảm ơn bạn đã dũng cảm đối diện với cảm xúc. Để xem kết quả và nhận email phân tích chi tiết từ chuyên gia, vui lòng để lại thông tin:
+          </p>
+
+          <form id="leadForm" class="lead-form">
+            <div class="form-header">
+              <h3>Nhận Kết Quả Qua Email</h3>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Họ và Tên</label>
+              <input type="text" name="name" class="form-input" placeholder="Tên để chúng tôi xưng hô với bạn..." required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-input" placeholder="Email nhận kết quả..." required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số Điện Thoại (Tùy chọn)</label>
+              <input type="tel" name="phone" class="form-input" placeholder="Để SUNNYCARE có thể hỗ trợ bạn...">
+            </div>
+            
+            <button type="submit" class="btn-primary submit-btn" id="submitResultsBtn">
+              Xem Kết Quả Ngay
+            </button>
+          </form>
+
+          <div id="quickResultContent"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script src="../js/api.js?v=2030"></script>
+  <script src="../js/tests.js?v=2030"></script>
+  <script>
+    const phq9Questions = [
+      { vi: "Ít hứng thú hoặc kém vui thú khi làm các việc", en: "Little interest or pleasure in doing things" },
+      { vi: "Cảm thấy buồn rầu, chán nản hoặc tuyệt vọng", en: "Feeling down, depressed, or hopeless" },
+      { vi: "Khó đi vào giấc ngủ, hay thức giấc tản mạn, hoặc ngủ quá nhiều", en: "Trouble falling or staying asleep, or sleeping too much" },
+      { vi: "Cảm thấy mệt mỏi hoặc ít năng lượng", en: "Feeling tired or having little energy" },
+      { vi: "Kém ăn hoặc ăn quá nhiều", en: "Poor appetite or overeating" },
+      { vi: "Cảm thấy tồi tệ về bản thân - hoặc cho rằng mình là kẻ thất bại, làm cho gia đình hoặc bản thân thất vọng", en: "Feeling bad about yourself - or that you are a failure or have let yourself or your family down" },
+      { vi: "Khó tập trung vào mọi việc, chẳng hạn như khi đọc báo hoặc xem tivi", en: "Trouble concentrating on things, such as reading the newspaper or watching television" },
+      { vi: "Di chuyển hoặc nói năng rất chậm chạp khiến người khác có thể nhận thấy. Hoặc ngược lại - bồn chồn, đứng ngồi không yên nhiều hơn bình thường", en: "Moving or speaking so slowly that other people could have noticed. Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual" },
+      { vi: "Có ý nghĩ thà chết đi cho xong hoặc làm đau bản thân bằng cách nào đó", en: "Thoughts that you would be better off dead, or of hurting yourself in some way" }
+    ];
+
+    const options = [
+      { value: 0, vi: "Không bao giờ", en: "Not at all" },
+      { value: 1, vi: "Vài ngày", en: "Several days" },
+      { value: 2, vi: "Hơn một nửa số ngày", en: "More than half the days" },
+      { value: 3, vi: "Hầu như mỗi ngày", en: "Nearly every day" }
+    ];
+
+    // Initialize test
+    document.addEventListener('DOMContentLoaded', () => {
+      new TestEngine({
+        testId: 'PHQ9',
+        questions: phq9Questions,
+        options: options,
+        scoringHandler: (answers) => {
+          const total = answers.reduce((sum, val) => sum + val, 0);
+          let vi, en, css, desc_vi, desc_en;
+          
+          if(total <= 4){ 
+            vi = 'Tối thiểu'; en = 'Minimal/None'; css = 'minimal'; 
+            desc_vi = 'Cảm xúc của bạn đang ở trạng thái tương đối ổn định.';
+            desc_en = 'Your emotions are currently relatively stable.';
+          }
+          else if(total <= 9) { 
+            vi = 'Nhẹ'; en = 'Mild'; css = 'mild'; 
+            desc_vi = 'Có dấu hiệu trầm cảm nhẹ. Một số công cụ thư giãn nho nhỏ sẽ hữu ích.';
+            desc_en = 'Signs of mild depression. Some small relaxation tools would be helpful.';
+          }
+          else if(total <= 14) { 
+            vi = 'Vừa'; en = 'Moderate'; css = 'moderate'; 
+            desc_vi = 'Dấu hiệu trầm cảm ở mức độ vừa, bạn nên bắt đầu chú ý nhiều hơn đến bản thân và có thể cần gặp chuyên gia.';
+            desc_en = 'Moderate depression signs, you should start paying more attention to yourself and may need an expert.';
+          }
+          else if(total <= 19) { 
+            vi = 'Vừa đến Nặng'; en = 'Moderately Severe'; css = 'severe'; 
+            desc_vi = 'Mức độ ảnh hưởng khá lớn. Chúng tôi khuyến nghị bạn nên đặt lịch hẹn với nhà tâm lý.';
+            desc_en = 'Significant impact. We highly recommend booking an appointment with a psychologist.';
+          }
+          else { 
+            vi = 'Nặng'; en = 'Severe'; css = 'severe'; 
+            desc_vi = 'Bạn đang vượt qua một giai đoạn rất khó khăn. Xin đừng đi một mình, hãy tìm kiếm sự trợ giúp chuyên môn ngay.';
+            desc_en = 'You are navigating a very difficult period. Please do not walk alone, seek professional help immediately.';
+          }
+
+          return { total, severity_vi: vi, severity_en: en, cssClass: css, desc_vi, desc_en };
+        },
+        crisisHandler: (answers) => {
+          // PHQ-9 Question 9 is index 8. If value > 0 -> Crisis
+          return answers[8] > 0;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

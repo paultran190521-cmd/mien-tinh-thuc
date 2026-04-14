@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thực Hành Mindfulness | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <style>
+    .tools-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(var(--nav-h) + 3rem) 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mindfulness-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 10;
+    }
+
+    .visual-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      margin: 0 auto 2rem;
+      opacity: 0.15;
+      animation: pulse-ring 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mindfulness-text {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2.5rem;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: var(--t);
+    }
+    .dot.active {
+      background: var(--primary-light);
+      transform: scale(1.5);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* Background blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      animation: floatBlob 10s infinite;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      bottom: -150px; right: -100px;
+      animation: floatBlob 15s infinite reverse;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tests/phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="../tests/gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="../tests/dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="../tests/ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="music-toggle" id="musicToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-header">
+      <span class="music-title">🎵 Nhạc Thiền Định</span>
+      <button class="music-close" id="musicClose">✕</button>
+    </div>
+    <div class="music-tracks">
+      <button class="track-btn active" data-track="rain">🌧️ Mưa</button>
+      <button class="track-btn" data-track="ocean">🌊 Biển</button>
+      <button class="track-btn" data-track="forest">🌲 Rừng</button>
+      <button class="track-btn" data-track="piano">🎹 Piano</button>
+    </div>
+    <div class="music-controls">
+      <button class="play-pause-btn" id="playPauseBtn">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+    </div>
+  </div>
+
+  <main class="tools-page">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="mindfulness-card">
+      <div class="visual-circle"></div>
+      <h1 class="gradient-text" style="font-size: 2rem; margin-bottom: 0.5rem;">Quét Cơ Thể (Body Scan)</h1>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom: 2rem;">Bật nhạc thiền và làm theo hướng dẫn trên màn hình</p>
+      
+      <div class="mindfulness-text" id="mText">
+        Hãy tìm một tư thế thật thoải mái. Bạn có thể ngồi hoặc nằm xuống. Nhắm mắt lại nếu bạn muốn.
+      </div>
+
+      <div class="progress-dots" id="dotsContainer"></div>
+
+      <div style="display:flex; justify-content:center; gap: 1rem;">
+        <button class="btn-secondary" id="btnPrev" style="visibility:hidden">Quay Lại</button>
+        <button class="btn-primary" id="btnNext">Bắt Đầu Quét</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/music.js?v=2030"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script>
+    const prompts = [
+      "Hãy tìm một tư thế thật thoải mái. Bạn có thể ngồi hoặc nằm xuống. Nhắm mắt lại nếu bạn muốn.",
+      "Mang sự chú ý của bạn tới hơi thở. Tập trung vào không khí đang đi vào và đi ra qua mũi bạn.",
+      "Bây giờ, hãy dời sự chú ý đến các ngón chân. Cảm nhận bất kỳ nhiệt độ hay sự căng tức nào ở đó, và chỉ cần ghi nhận. Không cần cố gắng thay đổi điều gì.",
+      "Tiếp tục di chuyển sự chú ý lên bắp chân, đầu gối và đùi. Nếu bạn thấy cơ bắp đang gồng lên, hãy hình dung hơi thở của bạn đang làm mềm chúng.",
+      "Di chuyển lên vùng hông và bụng. Hãy cảm nhận bụng phồng lên và xẹp xuống theo từng nhịp thở tự nhiên.",
+      "Chú ý đến ngực và tim bạn. Cảm nhận nhịp đập từ tốn và lồng ngực tự mở rộng.",
+      "Mang sự nhận biết đến đôi vai, cánh tay và ngón tay. Hãy cho phép đôi vai được trĩu xuống, buông bỏ những gánh nặng bạn đang mang.",
+      "Cuối cùng, cảm nhận vùng cổ, khuôn mặt và đỉnh đầu. Thả lỏng quai hàm, ánh mắt, trán mịn mạng lại.",
+      "Bạn đang hoàn toàn hiện diện ở đây. Cảm nhận sự rỗng rang, thư thái lan tỏa toàn bộ cơ thể trong một vài nhịp thở nữa.",
+      "Khi bạn đã sẵn sàng, hãy nhẹ nhàng cử động các ngón tay, ngón chân, và từ từ mở mắt ra. Cảm ơn bạn đã dành thời gian cho chính mình."
+    ];
+
+    let currentStep = 0;
+    const mText = document.getElementById('mText');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const btnNext = document.getElementById('btnNext');
+    const btnPrev = document.getElementById('btnPrev');
+
+    // Init dots
+    prompts.forEach((_, i) => {
+      let dot = document.createElement('div');
+      dot.className = 'dot' + (i===0?' active':'');
+      dot.id = 'dot' + i;
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateStep() {
+      // Fade text
+      mText.style.opacity = 0;
+      setTimeout(() => {
+        mText.textContent = prompts[currentStep];
+        mText.style.opacity = 1;
+      }, 400);
+
+      // Update dots
+      document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+      document.getElementById('dot' + currentStep).classList.add('active');
+
+      // Update buttons
+      btnPrev.style.visibility = (currentStep === 0) ? 'hidden' : 'visible';
+      
+      if (currentStep === 0) {
+        btnNext.textContent = 'Bắt Đầu Quét';
+      } else if (currentStep === prompts.length - 1) {
+        btnNext.textContent = 'Hoàn Thành';
+      } else {
+        btnNext.textContent = 'Tiếp Theo';
+      }
+    }
+
+    btnNext.addEventListener('click', () => {
+      // auto turn on ambient music if not playing on first click
+      if(currentStep === 0 && window.ambientSound && !window.ambientSound.isPlaying) {
+         document.getElementById('playPauseBtn').click();
+      }
+
+      if (currentStep < prompts.length - 1) {
+        currentStep++;
+        updateStep();
+      } else {
+        window.location.href = '../index.html';
+      }
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateStep();
+      }
+    });
+
+  </script>
+</body>
+</html>

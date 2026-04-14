@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm GAD-7 (Lo Âu) | SUNNYCARE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=2030">
+  <link rel="stylesheet" href="../css/tests.css?v=2030">
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid rgba(26,35,50,0.10);">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="SUNNYCARE"><span class="brand-name-text">SUNNYCARE</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Trắc Nghiệm ▾" data-en="Assessments ▾">Trắc Nghiệm ▾</button>
+          <div class="dropdown-menu">
+            <a href="phq9.html" class="dropdown-item" data-vi="Trầm Cảm (PHQ-9)" data-en="Depression (PHQ-9)">Trầm Cảm (PHQ-9)</a>
+            <a href="gad7.html" class="dropdown-item" data-vi="Lo Âu (GAD-7)" data-en="Anxiety (GAD-7)">Lo Âu (GAD-7)</a>
+            <a href="dass21.html" class="dropdown-item" data-vi="Stress (DASS-21)" data-en="Stress (DASS-21)">Stress (DASS-21)</a>
+            <a href="ace.html" class="dropdown-item" data-vi="Tuổi Thơ (ACE)" data-en="Childhood (ACE)">Tuổi Thơ (ACE)</a>
+          </div>
+        </div>
+        <a href="../journal/auth.html" class="nav-link" data-vi="Nhật Ký" data-en="Journal">Nhật Ký</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-vi="Công cụ ▾" data-en="Tools ▾">Công cụ ▾</button>
+          <div class="dropdown-menu">
+            <a href="../tools/grounding.html" class="dropdown-item" data-vi="Xoa Dịu (5-4-3-2-1)" data-en="Grounding (5-4-3-2-1)">Xoa Dịu (5-4-3-2-1)</a>
+            <a href="../tools/mindfulness.html" class="dropdown-item" data-vi="Chánh Niệm" data-en="Mindfulness">Chánh Niệm</a>
+          </div>
+        </div>
+        <a href="../tools/breathing.html" class="nav-link" data-vi="Thư Giãn" data-en="Wellness Tools">Thư Giãn</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-toggle" onclick="window.location.reload()"><span class="lang-vi active">VI</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="test-page">
+    <div class="test-container">
+
+      <!-- STEP 1: INTRO -->
+      <section id="stepIntro" class="test-step active">
+        <div class="intro-card">
+          <span class="test-badge">GAD-7 SCREENING</span>
+          <h1 class="intro-title gradient-text" data-vi="Trắc Nghiệm Lo Âu GAD-7" data-en="GAD-7 Anxiety Screening">Trắc Nghiệm Lo Âu GAD-7</h1>
+          <p class="intro-desc" data-vi="GAD-7 là công cụ chuẩn lâm sàng quốc tế đánh giá mức độ rối loạn lo âu lan tỏa. Dành ra 3-5 phút để lắng nghe bản thân." data-en="GAD-7 is an international clinical tool for assessing Generalized Anxiety Disorder. Take 3-5 minutes to listen to yourself.">
+            GAD-7 là công cụ chuẩn lâm sàng quốc tế đánh giá mức độ rối loạn lo âu lan tỏa. Dành ra 3-5 phút để lắng nghe bản thân.
+          </p>
+
+          <div class="guidelines-list">
+            <div class="guide-item">
+              <span class="guide-icon">🌿</span>
+              <div class="guide-text">
+                <h4 data-vi="Không Gian" data-en="Environment">Không Gian</h4>
+                <p data-vi="Hãy tìm một góc yên tĩnh, hít thở sâu và thư giãn trước khi bắt đầu." data-en="Find a quiet spot, take a deep breath, and relax before starting."></p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">⏳</span>
+              <div class="guide-text">
+                <h4 data-vi="Thời Gian" data-en="TimeFrame">Thời Gian</h4>
+                <p data-vi="Hãy cân nhắc cách bạn cảm thấy trong vòng 2 TUẦN QUA." data-en="Consider how you have been feeling over the PAST 2 WEEKS."></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="agreement-box">
+            <label class="form-checkbox">
+              <input type="checkbox" id="agreeCheckbox">
+              <span class="form-checkbox-label" data-vi="Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia." data-en="I understand this is a screening tool, not a medical diagnosis. I voluntarily agree to participate.">
+                Tôi hiểu rằng đây là công cụ sàng lọc, không thay thế chẩn đoán y khoa. Tôi đồng ý tự nguyện tham gia.
+              </span>
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-primary" id="startTestBtn">
+              <span data-vi="Bắt Đầu Làm Test" data-en="Start Assessment">Bắt Đầu Làm Test</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: TEST -->
+      <section id="stepTest" class="test-step">
+        <div class="test-header">
+          <div class="progress-info">
+            <span class="question-count" id="qCountTxt">Câu 1/7</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+          </div>
+          <div class="encouragement-msg" id="encourageMsg"></div>
+        </div>
+
+        <div id="questionContainer"></div>
+
+        <div class="test-actions">
+          <button class="btn-secondary" id="prevBtn" style="visibility:hidden">Quay Lại</button>
+          <button class="btn-primary" id="nextBtn">Tiếp Theo</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: RESULT FORM -->
+      <section id="stepResult" class="test-step">
+        <div class="result-card">
+          <span class="completion-icon">🎉</span>
+          <h2 class="result-title gradient-text" data-vi="Bạn Đã Hoàn Thành!" data-en="You Did It!">Bạn Đã Hoàn Thành!</h2>
+          <p class="result-desc" data-vi="Cảm ơn bạn đã trung thực và dũng cảm đối diện với lo âu. Để xem kết quả và nhận email phân tích chi tiết từ chuyên gia, vui lòng để lại thông tin:" data-en="Thank you for being honest and brave enough to face your anxiety. To view your score and receive a detailed expert breakdown, please leave your info:">
+            Cảm ơn bạn đã trung thực và dũng cảm đối diện với lo âu. Để xem kết quả và nhận email phân tích chi tiết từ chuyên gia, vui lòng để lại thông tin:
+          </p>
+
+          <form id="leadForm" class="lead-form">
+            <div class="form-header">
+              <h3>Nhận Kết Quả Qua Email</h3>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Họ và Tên</label>
+              <input type="text" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số Điện Thoại (Tùy chọn)</label>
+              <input type="tel" name="phone" class="form-input">
+            </div>
+            
+            <button type="submit" class="btn-primary submit-btn" id="submitResultsBtn">Xem Kết Quả Ngay</button>
+          </form>
+
+          <div id="quickResultContent"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="../js/app.js?v=2030"></script>
+  <script src="../js/api.js?v=2030"></script>
+  <script src="../js/tests.js?v=2030"></script>
+  <script>
+    const gad7Questions = [
+      { vi: "Cảm thấy lo lắng, bồn chồn hoặc căng thẳng", en: "Feeling nervous, anxious, or on edge" },
+      { vi: "Không thể ngừng lại hoặc không thể kiểm soát được sự lo lắng", en: "Not being able to stop or control worrying" },
+      { vi: "Lo lắng quá nhiều về những thứ khác nhau", en: "Worrying too much about different things" },
+      { vi: "Khó thư giãn", en: "Trouble relaxing" },
+      { vi: "Bồn chồn, không thể ngồi yên", en: "Being so restless that it is hard to sit still" },
+      { vi: "Dễ bị bực bội hoặc cáu gắt", en: "Becoming easily annoyed or irritable" },
+      { vi: "Cảm thấy sợ hãi chuyện tồi tệ gì đó có thể xảy ra", en: "Feeling afraid, as if something awful might happen" }
+    ];
+
+    const options = [
+      { value: 0, vi: "Không bao giờ", en: "Not at all" },
+      { value: 1, vi: "Vài ngày", en: "Several days" },
+      { value: 2, vi: "Hơn một nửa số ngày", en: "More than half the days" },
+      { value: 3, vi: "Hầu như mỗi ngày", en: "Nearly every day" }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new TestEngine({
+        testId: 'GAD7',
+        questions: gad7Questions,
+        options: options,
+        scoringHandler: (answers) => {
+          const total = answers.reduce((sum, val) => sum + val, 0);
+          let vi, en, css, desc_vi, desc_en;
+          
+          if(total <= 4){ 
+            vi = 'Tối thiểu'; en = 'Minimal/None'; css = 'minimal'; 
+            desc_vi = 'Cảm xúc của bạn đang ở trạng thái tương đối ổn định, không có dấu hiệu lo âu rõ rệt.';
+            desc_en = 'Your emotions are currently relatively stable, with no clear signs of anxiety.';
+          }
+          else if(total <= 9) { 
+            vi = 'Nhẹ'; en = 'Mild'; css = 'mild'; 
+            desc_vi = 'Lo âu nhẹ. Các bài tập thở và mindfulness có thể giúp bạn làm dịu hệ thống thần kinh.';
+            desc_en = 'Mild anxiety. Breathing exercises and mindfulness can help soothe your nervous system.';
+          }
+          else if(total <= 14) { 
+            vi = 'Vừa'; en = 'Moderate'; css = 'moderate'; 
+            desc_vi = 'Mức độ lo âu vừa phải có thể ảnh hưởng đến giấc ngủ và sự tập trung. Bạn nên được hỗ trợ thêm từ chuyên gia.';
+            desc_en = 'Moderate anxiety that may impact sleep and focus. Seeking professional support is recommended.';
+          }
+          else { 
+            vi = 'Nặng'; en = 'Severe'; css = 'severe'; 
+            desc_vi = 'Lo âu đang tác động mạnh đến đời sống của bạn. Hãy liên hệ chuyên gia tâm lý ngay để được đồng hành.';
+            desc_en = 'Anxiety is strongly impacting your life. Contact a psychological expert immediately for support.';
+          }
+
+          return { total, severity_vi: vi, severity_en: en, cssClass: css, desc_vi, desc_en };
+        },
+        crisisHandler: null // normally GAD-7 doesn't have an explicit suicide question, so none needed
+      });
+    });
+  </script>
+</body>
+</html>
